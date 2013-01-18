@@ -66,44 +66,11 @@
 	<script src="http://www.parsecdn.com/js/parse-1.1.5.min.js"></script>
 	<script src="js/rachet.js"></script>
 	<script src="js/align.js"></script> <!-- for aligning elements on page-->
-	var countAdd;
-	<script>
-		function initial()
-		{
-			$('#another1').hide();
-			$('#another2').hide();
-			$('#another3').hide();
-			$('#another4').hide();
-			$('.delete').hide();
-			$('#another2').hide();
-			$('#another3').hide();
-			$('#another4').hide();
-			$('#remove').show();
-			countAdd=0;
-		}
-		function addNew()
-		{
-			countAdd++;
-			switch(countAdd)
-			{
-				case 1: {$('#another1').show(); $('#remove1').show();break;}
-				case 2: {$('#another2').show(); $('#remove2').show();break;}
-				case 3: {$('#another3').show(); $('#remove3').show();break;}
-				case 4: {$('#another4').show(); $('#remove4').show();break;}
-			}
-			if(countAdd>4)
-				alert("too many ingridient");
-		}
-	</script>
-</head>
-
-<body onload="initial()"> 
-	<!-Title Bar->
+	<body>
 	<header class="bar-title">
 		<h1 class="title">Foo-Find</h1>
   	</header>
-  	
-  	<!-Footer Bar->
+	  	<!-Footer Bar->
   	<nav class="bar-tab">
 	  <ul class="tab-inner">
 	    <li class="tab-item">
@@ -132,35 +99,37 @@
 	    </li>
 	  </ul>
 	</nav>
-
-	<div id="home" class="content">
+<div id="home" class="content">
 		<br><br>
 		<div class="content-frame">
-			<ul class="inset list"> 
-                <li id="instruction_box">
-                    <span class="bold">Getting Started: Type a food name and we will you show you its description and how you cook it</span> 
-            	</li>
-            </ul>
-			<form class="padded">
-				<input type="search" id="name" placeholder="Type the name"/><br>
-	
-				<input type="search" id="another1" placeholder="Cook with what?"/><br>
-
-				<input type="search" id="another2" placeholder="Cook with what?"/><br>
-	
-				<input type="search" id="another3" placeholder="Cook with what?"/><br>
-	
-				<input type="search" id="another4" placeholder="Cook with what?"/><br>
-
-				<a class="button button-block" id="add" onclick="addNew()" >Add Another</a>
-				<a class="button button-block" id="submit" >Search</a>
-		 	</form>
+				<ul class="list">
+		<li><a href="#">American<span class="count">24</span></a></li>
+		<li><a href="#">Arabia<span class="count">24</span></a></li>
+		<li><a href="#">Austrian<span class="count">34</span></a></li>
+		<li><a href="#">Belgium <span class="count">9</span></a></li>
+		<li><a href="#">Brazilian <span class="count">14</span></a></li>
+		<li><a href="#">Canadian<span class="count">28</span></a></li>
+		<li><a href="Chinese.html">Chinese<span class="count">87</span></a></li>
+		<li><a href="#">Germany<span class="count">20</span></a></li>
+		<li><a href="#">Franch<span class="count">42</span></a></li>
+		<li><a href="#">Greek<span class="count">19</span></a></li>
+		<li><a href="#">Japanese<span class="count">56</span></a></li>
+		<li><a href="#">Korean<span class="count">48</span></a></li>
+		<li><a href="#">Indian<span class="count">29</span></a></li>
+		<li><a href="#">Mexican<span class="count">17</span></a></li>
+		<li><a href="#">Netherlands<span class="count">19</span></a></li>
+		<li><a href="#">Portugal<span class="count">14</span></a></li>
+		<li><a href="#">Spain<span class="count">17</span></a></li>
+		<li><a href="#">Swizerland<span class="count">6</span></a></li>
+		<li><a href="#">UK and Ireland<span class="count">49</span></a></li>
+	</ul>		
 		 	<br>
 		</div>
 	</div>
 
     <div id="load-background">
     </div>
-</body>
+	
+	</body>
 
 </html>
