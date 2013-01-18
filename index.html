@@ -80,6 +80,13 @@
 			$('#another4').hide();
 			$('#remove').show();
 			countAdd=0;
+			$('.input-row').hide();
+		}
+		function reset()
+		{
+			document.getElementById("description").innerHTML = "Description: N/A";
+			document.getElementById("dish").innerHTML =  "Dish: N/A";
+			document.getElementById("recipe").innerHTML = "Recipe: N/A";
 		}
 		function addNew()
 		{
@@ -94,6 +101,15 @@
 			if(countAdd>4)
 				alert("too many ingridient");
 		}
+		function googleSearch()
+		{
+		}
+		function searching()
+		{
+			$('.input-row').show();
+			googleSearch();
+		}
+
 	</script>
 </head>
 
@@ -153,7 +169,23 @@
 				<input type="search" id="another4" placeholder="Cook with what?"/><br>
 
 				<a class="button button-block" id="add" onclick="addNew()" >Add Another</a>
-				<a class="button button-block" id="submit" >Search</a>
+				<a class="button button-block" id="submit" onclick="searching()">Search</a>
+				<form>
+				<div class="input-group">
+					<div class="input-row">
+						<label id="description">Description:</label>
+						<input type="text" id="description" text="hello">
+					</div>
+					<div class="input-row">
+						<label id="dish">Dish Name:</label>
+						<input type="text" id="dishname">
+					</div>
+					<div class="input-row">
+						<label id="recipe">Recipe:</label>
+						<input type="text" id="recipe">
+					</div>
+				</div>
+				</form>
 		 	</form>
 		 	<br>
 		</div>
