@@ -3,7 +3,7 @@
 <head> 
 	<meta charset="utf-8">
 	<title>Foo-Find</title>
-
+    
 	<!-- Sets initial viewport load and disables zooming  -->
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -11,23 +11,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<style>
-
-		#load-background{
-		    display:    none;
-		    z-index:    500;
-		    height: 100%;
-		    width: 100%;
-		    background: rgba(220,220,220,.8);
-		}
- 		#loading{
-		    display:    none;
-		    z-index:    501;
-		}
 		.content-frame {
 			padding: 0 25px;
 		}
 		#img-result {
-			width: 100%;
+			width: 95%;
 		}
 		ul.list.inset {
 			margin: 0 0 25px 0;
@@ -66,8 +54,9 @@
 	<script src="http://www.parsecdn.com/js/parse-1.1.5.min.js"></script>
 	<script src="js/rachet.js"></script>
 	<script src="js/align.js"></script> <!-- for aligning elements on page-->
-	var countAdd;
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script>
+		var countAdd;
 		function initial()
 		{
 			$('#another1').hide();
@@ -101,13 +90,28 @@
 			if(countAdd>4)
 				alert("too many ingridient");
 		}
-		function googleSearch()
-		{
-		}
 		function searching()
 		{
 			$('.input-row').show();
 			googleSearch();
+		}
+		function googleSearch()
+		{
+		//my key: AIzaSyDoy02cvoK7HQrJs68a0F0Jcx3apgjx9LY
+		//my cx:008240998251710720813:byrnha0lxgc
+			var url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyDoy02cvoK7HQrJs68a0F0Jcx3apgjx9LY&cx=008240998251710720813:byrnha0lxgc&searchType=image&q=";																											 
+			url+=document.getElementById("name").value;
+			$.ajax({
+					type:"GET",
+					url:url,
+					dataType: "json",
+					success:function(data){
+						document.getElementById("imageResult").src = data.items[0].link;
+					},
+					error:function(data){
+						alert("cannot search");
+					}
+				});
 		}
 
 	</script>
@@ -171,6 +175,8 @@
 				<a class="button button-block" id="add" onclick="addNew()" >Add Another</a>
 				<a class="button button-block" id="submit" onclick="searching()">Search</a>
 				<form>
+				<image id="imageResult"/>
+				<br>
 				<div class="input-group">
 					<div class="input-row">
 						<label id="description">Description:</label>
