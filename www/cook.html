@@ -11,7 +11,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<style>
-
 		#load-background{
 		    display:    none;
 		    z-index:    500;
@@ -43,34 +42,20 @@
 		.bold {
 			font-weight: bold;
 		}
-		.delete{
-			width:35px;
-			height:36px;
-			background:url(img/r.png) no-repeat 0px -1px;
-			display:block;
-			position:relative;
-			left:1280px;
-			top:-44px;
-		}
-		#name{
-		length:100px;
-			height: 32px;
-			font-size: 14px;
-			border-radius: 25px;
-			margin-top:0px;
-			margin-bottom:10px;
-		}
 	</style>
 	<link rel="stylesheet" href="css/ratchet.css" />
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script src="http://www.parsecdn.com/js/parse-1.1.5.min.js"></script>
 	<script src="js/rachet.js"></script>
 	<script src="js/align.js"></script> <!-- for aligning elements on page-->
-	<body>
+</head>
+
+<body> 
+	<!-Title Bar->
 	<header class="bar-title">
 		<h1 class="title">Foo-Find</h1>
   	</header>
-	  	<!-Footer Bar->
+  	
   	<nav class="bar-tab">
 	  <ul class="tab-inner">
 	    <li class="tab-item">
@@ -91,18 +76,24 @@
 	        <div class="tab-label">Cook</div>
 	      </a>
 	    </li>
-		<li class="tab-item">
-	      <a href="rec.html">
-	        <img class="tab-icon" src="img/pan.png">
-	        <div class="tab-label">Rec</div>
-	      </a>
-	    </li>
 	  </ul>
 	</nav>
-<div id="home" class="content">
+
+	<div id="home" class="content">
 		<br><br>
 		<div class="content-frame">
-				<ul class="list">
+		<ul class="inset list"> 
+                <li id="instruction_box">
+                    <span class="bold">Getting Started: Type a name of a dish and we tell you how you cook it</span> 
+            	</li>
+            </ul>
+			<form class="padded">
+				<input type="search" id="search" placeholder="Type the dish name"/><br>
+				<a class="button button-block" id="submit" >Search</a>
+		 	</form>
+		 	<br>
+<div class="content-frame">
+    <ul class="list">
 		<li><a href="#">American<span class="count">24</span></a></li>
 		<li><a href="#">Arabia<span class="count">24</span></a></li>
 		<li><a href="#">Austrian<span class="count">34</span></a></li>
@@ -124,12 +115,12 @@
 		<li><a href="#">UK and Ireland<span class="count">49</span></a></li>
 	</ul>		
 		 	<br>
-		</div>
+		
+	</div>		</div>
 	</div>
 
     <div id="load-background">
     </div>
-	
-	</body>
+</body>
 
 </html>

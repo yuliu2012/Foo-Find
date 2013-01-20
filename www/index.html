@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>Foo-Find</title>
+            
+            <!-- Sets initial viewport load and disables zooming  -->
+            <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+                
+                <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+                <meta name="apple-mobile-web-app-capable" content="yes">
+                    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+                        <style>
+                            .content-frame {
+                                padding: 0 25px;
+                            }
+                            #img-result {
+                                width: 95%;
+                            }
+                            ul.list.inset {
+                                margin: 0 0 25px 0;
+                            }
+                            #instruction_box {
+                                padding: 20px 20px 20px 20px;
+                                width: inherit;
+                                text-align: left;
+                            }
+                            #description-block {
+                                margin-bottom: 25px;
+                            }
+                            .bold {
+                                font-weight: bold;
+                            }
+                            .delete{
+                                width:35px;
+                                height:36px;
+                                background:url(img/r.png) no-repeat 0px -1px;
+                                display:block;
+                                position:relative;
+                                left:1280px;
+                                top:-44px;
+                            }
+                            #name{
+                                length:100px;
+                                height: 32px;
+                                font-size: 14px;
+                                border-radius: 25px;
+                                margin-top:0px;
+                                margin-bottom:10px;
+                            }
+                            </style>
+                        <link rel="stylesheet" href="css/ratchet.css" />
+                        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+                        <script src="http://www.parsecdn.com/js/parse-1.1.5.min.js"></script>
+                        <script src="js/rachet.js"></script>
+                        <script type="text/javascript" src="cordova-2.2.0.js"></script>
+                        <script src="js/align.js"></script> <!-- for aligning elements on page-->
+                        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+                        <script>
+                            var countAdd;
+                            function initial()
+                            {
+                                $('#another1').hide();
+                                $('#another2').hide();
+                                $('#another3').hide();
+                                $('#another4').hide();
+                                $('.delete').hide();
+                                $('#another2').hide();
+                                $('#another3').hide();
+                                $('#another4').hide();
+                                $('#remove').show();
+                                countAdd=0;
+                                $('.input-row').hide();
+                            }
+                            function reset()
+                            {
+                                document.getElementById("description").innerHTML = "Description: N/A";
+                                document.getElementById("dish").innerHTML =  "Dish: N/A";
+                                document.getElementById("recipe").innerHTML = "Recipe: N/A";
+                            }
+                            function addNew()
+                            {
+                                countAdd++;
+                                switch(countAdd)
+                                {
+                                    case 1: {$('#another1').show(); $('#remove1').show();break;}
+                                    case 2: {$('#another2').show(); $('#remove2').show();break;}
+                                    case 3: {$('#another3').show(); $('#remove3').show();break;}
+                                    case 4: {$('#another4').show(); $('#remove4').show();break;}
+                                }
+                                if(countAdd>4)
+                                alert("too many ingridient");
+                            }
+                            function searching()
+                            {
+                                $('.input-row').show();
+                                googleSearch();
+                            }
+                            function googleSearch()
+                            {
+                                //my key: AIzaSyDoy02cvoK7HQrJs68a0F0Jcx3apgjx9LY
+                                //my cx:008240998251710720813:byrnha0lxgc
+                                var url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyDoy02cvoK7HQrJs68a0F0Jcx3apgjx9LY&cx=008240998251710720813:byrnha0lxgc&searchType=image&q=";
+                                url+=document.getElementById("name").value;
+                                $.ajax({
+                                       type:"GET",
+                                       url:url,
+                                       dataType: "json",
+                                       success:function(data){
+                                       document.getElementById("imageResult").src = data.items[0].link;
+                                       },
+                                       error:function(data){
+                                       alert("cannot search");
+                                       }
+                                       });
+                            }
+                            
+                            </script>
+    </head>
+    
+    <body onload="initial()"> 
+        <!-Title Bar->
+        <header class="bar-title">
+            <h1 class="title">Foo-Find</h1>
+        </header>
+        
+        <!-Footer Bar->
+        <nav class="bar-tab">
+            <ul class="tab-inner">
+                <li class="tab-item">
+                    <a href="camera.html">
+                        <img class="tab-icon" src="img/camera.png">
+                            <div class="tab-label">Camera</div>
+                            </a>
+                </li>
+                <li class="tab-item active">
+                    <a href="index.html">
+                        <img class="tab-icon" src="img/search.png">
+                            <div class="tab-label">Search</div>
+                            </a>
+                </li>
+                <li class="tab-item">
+                    <a href="cook.html">
+                        <img class="tab-icon" src="img/pan.png">
+                            <div class="tab-label">Cook</div>
+                            </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div id="home" class="content">
+            <br><br>
+            <div class="content-frame">
+                <ul class="inset list"> 
+                    <li id="instruction_box">
+                        <span class="bold">Getting Started: Type a food name and we will you show you its description and how you cook it</span> 
+                    </li>
+                </ul>
+                <form class="padded">
+                    <input type="search" id="name" placeholder="Type the name"/><br>
+                    
+                    <input type="search" id="another1" placeholder="Cook with what?"/><br>
+                    
+                    <input type="search" id="another2" placeholder="Cook with what?"/><br>
+                    
+                    <input type="search" id="another3" placeholder="Cook with what?"/><br>
+                    
+                    <input type="search" id="another4" placeholder="Cook with what?"/><br>
+                    
+                    <a class="button button-block" id="add" onclick="addNew()" >Add Another</a>
+                    <a class="button button-block" id="submit" onclick="searching()">Search</a>
+                    <form>
+                        <image id="imageResult"/>
+                        <br>
+                        <div class="input-group">
+                            <div class="input-row">
+                                <label id="description">Description:</label>
+                                <input type="text" id="description" text="hello">
+                                    </div>
+                            <div class="input-row">
+                                <label id="dish">Dish Name:</label>
+                                <input type="text" id="dishname">
+                                    </div>
+                            <div class="input-row">
+                                <label id="recipe">Recipe:</label>
+                                <input type="text" id="recipe">
+                                    </div>
+                        </div>
+                    </form>
+                </form>
+                <br>
+            </div>
+        </div>
+        
+        <div id="load-background">
+        </div>
+    </body>
+    
+</html>
